@@ -10,6 +10,11 @@ using namespace std;
 
 
 int main(){
+    string s;
+    s.push_back('g');
+    cout << s << endl;
+    s.push_back('e');
+    cout << s << endl;
 
     puts("");
 

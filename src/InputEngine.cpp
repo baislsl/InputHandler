@@ -5,7 +5,6 @@
 #include <stdexcept>
 #include <fcntl.h>
 #include "InputEngine.h"
-#include <error.h>
 
 InputEngine::InputEngine() {
 
@@ -35,26 +34,20 @@ KeyCode InputEngine::next() {
     if(read(STDIN_FILENO, &cc, 1) == -1){
         throw std::runtime_error("Error when read from stdin");
     }
-    char input[MAX_INPUT];
-    size_t inputIndex = 0;
+    std::string result;
     switch (cc){
         case 033: // Esc
             setNoBlock();
-
-            input[inputIndex++] = cc;
-
+            result.push_back(cc);
             while(read(STDIN_FILENO, &cc, 1) == 1){
-                input[inputIndex++] = cc;
+                result.push_back(cc);
             }
-            input[inputIndex] = 0;
-
             resetNoBlock();
-
-            return KeyCode(input);
-
+            break;
         default:
-            return KeyCode(cc);
+            result.push_back(cc);
     }
+    return KeyCode::getKeyCode(result);
 
 }
 

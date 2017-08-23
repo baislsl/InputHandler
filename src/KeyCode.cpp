@@ -1,44 +1,42 @@
-//
-// Created by baislsl on 17-8-23.
+////
+//// Created by baislsl on 17-8-23.
+////
 //
 
-#include <string>
-#include <iostream>
 #include "KeyCode.h"
+#include "Terminal.h"
 
-KeyCode::KeyCode(const char *cc): code(cc){
-    setId();
-}
+static const KeyCode keyList[] = {
+//        {"\177",                     0177}, // break
+//        {"\01",                      CTRL | 'a'},
+        {"\033\141",                 ALT | 'a'},
+        {"\033\133\104",             LEFT},
+        {"\033\133\103",             RIGHT},
+        {"\033\133\101",             UP, Terminal::KeyUp},
+        {"\033\133\102",             DOWN},
+        {"\033\133\061\073\062\104", SHIFT | LEFT},
+        {"\033\133\061\073\062\103", SHIFT | RIGHT},
+        {"\033\133\061\073\063\104", ALT | LEFT},
+        {"\033\133\061\073\063\103", ALT | RIGHT},
+        {"\033\133\061\073\064\104", SHIFT | ALT | LEFT},
+        {"\033\133\061\073\064\103", SHIFT | ALT | RIGHT},
+        {"\033\133\061\073\065\104", CTRL | ALT | LEFT},
+        {"\033\133\061\073\065\103", CTRL | ALT | RIGHT}
+};
 
-KeyCode::KeyCode(const char cc){
-    code = " ";
-    code[0] = cc;
-    setId();
-}
 
-KeyCode::~KeyCode() {
+KeyCode::KeyCode(std::string _code, code_t _id)
+        : code(_code), id(_id), conductFunc(Terminal::defaultKeyConductFunc) {}
 
-}
+KeyCode::KeyCode(std::string _code, code_t _id, KeyConductFunc func)
+        : code(_code), id(_id), conductFunc(func) {}
 
-std::string KeyCode::getName() const  {
-    return code;
-}
 
-const char *KeyCode::getcStr() const {
-    return code.c_str();
-}
-
-void KeyCode::setId() {
-    for(const Key& key : keyList){
-        if(code == key.code){
-            id = key.id;
-            return;
+KeyCode KeyCode::getKeyCode(std::string code) {
+    for (const KeyCode &key : keyList) {
+        if (key.code == code) {
+            return key;
         }
     }
-    id = 0;
+    return KeyCode(code, (code_t) code[0]);
 }
-
-code_t KeyCode::get() const {
-    return id;
-}
-

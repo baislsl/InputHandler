@@ -1,6 +1,7 @@
 #pragma once
 
 #include<string>
+#include <termios.h>
 #include "KeyCode.h"
 
 class InputEngine {
@@ -20,7 +21,6 @@ public:
     bool isRunning();
 
     KeyCode next();
-
 
 private:
     struct termios		save_termios;

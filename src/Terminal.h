@@ -6,22 +6,29 @@
 #define INPUTHANDLER_TERMINAL_H
 
 #include <string>
+#include <functional>
+#include "InputEngine.h"
+#include "Util.h"
+
 
 class Terminal {
 public:
     Terminal();
 
+    void start();
+
     virtual ~Terminal();
 
+    static int defaultKeyConductFunc(Terminal* terminal, std::string name, code_t id);
+    static int KeyUp(Terminal* terminal, std::string name, code_t id);
+
 private:
-
-    void close();
-
-    void open();
-
-
+    InputEngine inputEngine;
 
 };
+
+
+
 
 
 #endif //INPUTHANDLER_TERMINAL_H

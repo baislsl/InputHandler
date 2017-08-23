@@ -11,6 +11,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include "InputEngine.h"
+#include "Terminal.h"
 
 static void err_sys(std::string msg){
     write(STDERR_FILENO, msg.c_str(), strlen(msg.c_str()));
@@ -28,17 +29,18 @@ static void err_sys(char *msg){
 //    exit(0);
 //}
 
+
+
 void test1(){
     InputEngine ie;
     ie.open();
     while(true){
-        KeyCode keyCode = ie.next();
+        std::string p = ie.next().code;
         puts("\033[2J\033[;H\033[0m");
-        std::string p = keyCode.getName();
         for(char cc : p){
             printf("_%o_", cc);
         }
-        printf("\n%lx",keyCode.get());
+        // printf("\n%lx",p.get());
 
         // printf("%s:end\n", keyCode.get());
         fflush(stdout);
@@ -48,10 +50,15 @@ void test1(){
     ie.close();
 }
 
+void terminalTest(){
+    Terminal terminal;
+    terminal.start();
+}
+
 
 int main(){
-    test1();
-
+    //test1();
+    terminalTest();
 }
 
 

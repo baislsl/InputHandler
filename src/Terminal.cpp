@@ -4,8 +4,10 @@
 
 #include <iostream>
 #include "Terminal.h"
+#include "KeyCode.h"
 
-Terminal::Terminal() {
+Terminal::Terminal()
+        : inputEngine() {
 
 }
 
@@ -13,17 +15,26 @@ Terminal::~Terminal() {
 
 }
 
-
-std::string getline(){
-    std::string ret;
-    getline(std::cin, ret);
-    return ret;
+void Terminal::start() {
+    inputEngine.open();
+    bool flag = false;
+    while(true){
+        KeyCode key = inputEngine.next();
+        std::string code = key.code;
+        (key.conductFunc)(this, key.code, key.id);
+        if(flag || code == "q")
+            break;
+    }
+    inputEngine.close();
 }
 
-void Terminal::close() {
-
+int Terminal::defaultKeyConductFunc(Terminal *terminal, std::string name, code_t id) {
+//    auto& inputEngine = terminal->inputEngine;
+//    inputEngine.isRunning();
+    std::cout << name << std::flush;
+    return 0;
 }
 
-void Terminal::open() {
-
+int Terminal::KeyUp(Terminal *terminal, std::string name, code_t id) {
+    std::cout << "call up" << std::flush;
 }
