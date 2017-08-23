@@ -14,7 +14,6 @@ public:
     virtual ~Terminal();
 
 private:
-    std::string getline();
 
     void close();
 

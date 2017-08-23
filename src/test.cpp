@@ -28,13 +28,9 @@ static void err_sys(char *msg){
 //    exit(0);
 //}
 
-
-
-int main(){
+void test1(){
     InputEngine ie;
     ie.open();
-
-
     while(true){
         KeyCode keyCode = ie.next();
         puts("\033[2J\033[;H\033[0m");
@@ -42,6 +38,7 @@ int main(){
         for(char cc : p){
             printf("_%o_", cc);
         }
+        printf("\n%lx",keyCode.get());
 
         // printf("%s:end\n", keyCode.get());
         fflush(stdout);
@@ -49,6 +46,11 @@ int main(){
         if(p == "q") break;
     }
     ie.close();
+}
+
+
+int main(){
+    test1();
 
 }
 

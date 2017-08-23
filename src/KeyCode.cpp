@@ -3,6 +3,7 @@
 //
 
 #include <string>
+#include <iostream>
 #include "KeyCode.h"
 
 KeyCode::KeyCode(const char *cc): code(cc){
