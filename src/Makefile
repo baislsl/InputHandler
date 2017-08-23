@@ -3,4 +3,4 @@ all : InputEngine.o KeyCode.o Terminal.o
 	g++ -std=c++11 -o te test.cpp InputEngine.o KeyCode.o Terminal.o
 
 clean:
-	rm *.o
+	rm *.o te

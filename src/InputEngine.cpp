@@ -46,10 +46,11 @@ KeyCode InputEngine::next() {
             while(read(STDIN_FILENO, &cc, 1) == 1){
                 input[inputIndex++] = cc;
             }
+            input[inputIndex] = 0;
 
             resetNoBlock();
 
-            return KeyCode(input, inputIndex);
+            return KeyCode(input);
 
         default:
             return KeyCode(cc);

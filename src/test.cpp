@@ -34,17 +34,19 @@ int main(){
     InputEngine ie;
     ie.open();
 
+
     while(true){
         KeyCode keyCode = ie.next();
-        const char *p = keyCode.get();
-
-        while(*p){
-            printf("_%o_",*p++);
+        puts("\033[2J\033[;H\033[0m");
+        std::string p = keyCode.getName();
+        for(char cc : p){
+            printf("_%o_", cc);
         }
+
         // printf("%s:end\n", keyCode.get());
         fflush(stdout);
 
-        if(strcmp(keyCode.get(), "q") == 0) break;
+        if(p == "q") break;
     }
     ie.close();
 
