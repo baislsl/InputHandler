@@ -6,7 +6,6 @@
 #include <termios.h>
 #include <zconf.h>
 #include <stdio.h>
-#include <curses.h>
 #include <cstring>
 #include <signal.h>
 #include <stdlib.h>

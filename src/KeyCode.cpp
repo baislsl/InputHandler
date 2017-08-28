@@ -12,7 +12,7 @@ static const KeyCode keyList[] = {
         {"\033\141",                 ALT | 'a'},
         {"\033\133\104",             LEFT},
         {"\033\133\103",             RIGHT},
-        {"\033\133\101",             UP, Terminal::KeyUp},
+        {"\033\133\101",             UP},
         {"\033\133\102",             DOWN},
         {"\033\133\061\073\062\104", SHIFT | LEFT},
         {"\033\133\061\073\062\103", SHIFT | RIGHT},
@@ -25,10 +25,10 @@ static const KeyCode keyList[] = {
 };
 
 
-KeyCode::KeyCode(std::string _code, code_t _id)
-        : code(_code), id(_id), conductFunc(Terminal::defaultKeyConductFunc) {}
+KeyCode::KeyCode(std::string& _code, code_t _id)
+        : code(_code), id(_id), conductFunc(InputBuffer::defaultKeyConductFunc) {}
 
-KeyCode::KeyCode(std::string _code, code_t _id, KeyConductFunc func)
+KeyCode::KeyCode(std::string& _code, code_t _id, KeyConductFunc func)
         : code(_code), id(_id), conductFunc(func) {}
 
 

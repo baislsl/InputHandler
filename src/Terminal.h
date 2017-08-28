@@ -9,7 +9,7 @@
 #include <functional>
 #include "InputEngine.h"
 #include "Util.h"
-
+#include "InputBuffer.h"
 
 class Terminal {
 public:
@@ -19,12 +19,13 @@ public:
 
     virtual ~Terminal();
 
-    static int defaultKeyConductFunc(Terminal* terminal, std::string name, code_t id);
-    static int KeyUp(Terminal* terminal, std::string name, code_t id);
+
+
+
 
 private:
     InputEngine inputEngine;
-
+    InputBuffer buffer;
 };
 
 
