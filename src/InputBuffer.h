@@ -10,42 +10,43 @@
 #include <functional>
 #include "KeyCode.h"
 #include "Util.h"
+#include "Cursor.h"
 
 class InputBuffer {
 public:
-    InputBuffer():cursor(0){
+    InputBuffer() : cursor() {
     }
 
-    static int defaultKeyConductFunc(InputBuffer& inputBuffer, std::string name, code_t id);
-    static int KeyUp(InputBuffer& inputBuffer, std::string name, code_t id);
+    static int defaultKeyConductFunc(InputBuffer &inputBuffer, std::string name, code_t id);
 
-    std::string flush(){
-        cursor = 0;
-        std::string ret = std::move(buffer);
-        buffer.clear();
-    }
+    static int KeyUp(InputBuffer &inputBuffer, std::string name, code_t id);
 
-    int readin(char cc){
-        buffer.push_back(cc);
-        moveEnd();
-    }
+    static int KeyDown(InputBuffer &inputBuffer, std::string name, code_t id);
 
-    int readin(std::string str){
-        buffer.append(str);
-        moveEnd();
-    }
+    static int KeyRight(InputBuffer &inputBuffer, std::string name, code_t id);
 
-    int moveRight();
+    static int KeyLeft(InputBuffer &inputBuffer, std::string name, code_t id);
 
+    static int KeyCtrlUp(InputBuffer &inputBuffer, std::string name, code_t id);
+
+    static int KeyCtrlDown(InputBuffer &inputBuffer, std::string name, code_t id);
+
+    static int KeyCtrlRight(InputBuffer &inputBuffer, std::string name, code_t id);
+
+    static int KeyCtrlLeft(InputBuffer &inputBuffer, std::string name, code_t id);
 
 private:
-    size_t cursor;
+    Cursor cursor;
     std::string buffer;
 
     // move cursor to the end of the input
-    void moveEnd(){
-        cursor = buffer.size();
-    }
+    void moveEnd();
+
+
+    std::string flush();
+
+
+    int moveRight();
 
 };
 

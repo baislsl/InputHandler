@@ -36,9 +36,9 @@ public:
 
     static KeyCode getKeyCode(std::string);
 
-    KeyCode(std::string& _code, code_t _id);
+    KeyCode(std::string _code, code_t _id);
 
-    KeyCode(std::string& _code, code_t _id, KeyConductFunc func);
+    KeyCode(std::string _code, code_t _id, KeyConductFunc func);
 
 private:
 
