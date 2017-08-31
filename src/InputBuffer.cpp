@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "InputBuffer.h"
+#include <error.h>
 
 int InputBuffer::defaultKeyConductFunc(InputBuffer &inputBuffer, std::string name, code_t id) {
     Cursor& cursor = inputBuffer.cursor;
@@ -16,7 +17,7 @@ int InputBuffer::defaultKeyConductFunc(InputBuffer &inputBuffer, std::string nam
 
 int InputBuffer::KeyRight(InputBuffer &inputBuffer, std::string name, code_t id) {
     Cursor& cursor = inputBuffer.cursor;
-    //std::cout << cursor.getPos() << ":" << inputBuffer.buffer.size() << std::flush;
+
     if (cursor.getPos() == inputBuffer.buffer.size()) {
         inputBuffer.buffer.push_back(' ');
         std::cout << ' ' << std::flush;
@@ -61,9 +62,23 @@ void InputBuffer::moveEnd() {
 
 std::string InputBuffer::flush() {
     cursor.setPos(0);
-    std::string ret = std::move(buffer);
+    std::string ret = buffer;
     buffer.clear();
     return ret;
+}
+
+int InputBuffer::KeyTab(InputBuffer &inputBuffer, std::string name, code_t id) {
+    if(inputBuffer.cursor.getPos() != inputBuffer.buffer.size()) return 0;
+
+
+
+
+    return 0;
+}
+
+int InputBuffer::KeyEnter(InputBuffer &inputBuffer, std::string name, code_t id) {
+
+    return 1;
 }
 
 

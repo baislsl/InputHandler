@@ -35,6 +35,13 @@ public:
 
     static int KeyCtrlLeft(InputBuffer &inputBuffer, std::string name, code_t id);
 
+    static int KeyTab(InputBuffer &inputBuffer, std::string name, code_t id);
+
+    static int KeyEnter(InputBuffer &inputBuffer, std::string name, code_t id);
+
+    std::string flush();
+
+
 private:
     Cursor cursor;
     std::string buffer;
@@ -43,7 +50,6 @@ private:
     void moveEnd();
 
 
-    std::string flush();
 
 
     int moveRight();

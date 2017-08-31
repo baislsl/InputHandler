@@ -9,9 +9,11 @@
 static const KeyCode keyList[] = {
 //        {"\177",                     0177}, // break
 //        {"\01",                      CTRL | 'a'},
+        {"\n", '\n', InputBuffer::KeyEnter},
+        {"\011",                     011}, // Tab
         {"\033\141",                 ALT | 'a'},
-        {"\033\133\104",             LEFT, InputBuffer::KeyLeft},
-        {"\033\133\103",             RIGHT, InputBuffer::KeyRight},
+        {"\033\133\104",             LEFT,         InputBuffer::KeyLeft},
+        {"\033\133\103",             RIGHT,        InputBuffer::KeyRight},
         {"\033\133\101",             UP},
         {"\033\133\102",             DOWN},
         {"\033\133\061\073\062\104", SHIFT | LEFT},
@@ -20,7 +22,7 @@ static const KeyCode keyList[] = {
         {"\033\133\061\073\063\103", ALT | RIGHT},
         {"\033\133\061\073\064\104", SHIFT | ALT | LEFT},
         {"\033\133\061\073\064\103", SHIFT | ALT | RIGHT},
-        {"\033\133\061\073\065\104", CTRL | LEFT, InputBuffer::KeyCtrlLeft},
+        {"\033\133\061\073\065\104", CTRL | LEFT,  InputBuffer::KeyCtrlLeft},
         {"\033\133\061\073\065\103", CTRL | RIGHT, InputBuffer::KeyCtrlRight},
 };
 

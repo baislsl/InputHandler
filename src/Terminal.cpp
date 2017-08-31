@@ -15,17 +15,19 @@ Terminal::~Terminal() {
 
 }
 
-void Terminal::start() {
+std::string Terminal::readline() {
     inputEngine.open();
-    bool flag = false;
-    while(true){
+    int flag = 0;
+    while (true) {
         KeyCode key = inputEngine.next();
         std::string code = key.code;
-        (key.conductFunc)(buffer, key.code, key.id);
-        if(flag || code == "q")
+        flag = (key.conductFunc)(buffer, key.code, key.id);
+        if (code == "q") exit(0);
+        if (flag == 1)
             break;
     }
     inputEngine.close();
+    return buffer.flush();
 }
 
 

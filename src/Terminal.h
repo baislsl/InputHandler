@@ -15,7 +15,7 @@ class Terminal {
 public:
     Terminal();
 
-    void start();
+    std::string readline();
 
     virtual ~Terminal();
 
